@@ -45,4 +45,5 @@ _The data was queried at block height \`${blockHeight}\`_`
   );
 } catch (error: unknown) {
   logger.error({ error }, `Caught an error`);
+  process.exit(1);
 }
