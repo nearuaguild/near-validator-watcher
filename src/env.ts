@@ -7,7 +7,7 @@ const EnvironmentSchema = z.object({
   VALIDATOR_ACCOUNT_ID: z.string(),
 });
 
-const parsed = EnvironmentSchema.safeParse(process.env);
+const parsed = await EnvironmentSchema.safeParseAsync(process.env);
 
 if (!parsed.success) {
   console.error("❌ Invalid environment configuration:");
