@@ -12,9 +12,9 @@ logger.debug(`Validating environment variables`);
 const parsed = await EnvironmentSchema.safeParseAsync(process.env);
 
 if (!parsed.success) {
-  console.error("❌ Invalid environment configuration:");
+  logger.error("❌ Invalid environment configuration:");
   for (const issue of parsed.error.issues) {
-    console.error(` - ${issue.path.join(".")}: ${issue.message}`);
+    logger.error(`${issue.path.join(".")}: ${issue.message}`);
   }
   process.exit(1);
 }
