@@ -1,3 +1,6 @@
+// it must be first
+import "./env";
+
 import { formatNearAmount } from "@near-js/utils";
 
 import { logger } from "./logger";
