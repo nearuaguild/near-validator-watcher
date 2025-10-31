@@ -7,7 +7,7 @@ bun install
 To compile:
 
 ```bash
-bun build --require ./src/env.ts src/index.ts --compile --outfile watcher
+bun run build.ts
 ```
 
 To run:
