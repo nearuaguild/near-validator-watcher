@@ -17,7 +17,7 @@ export const logger = pino(
     },
   },
   pino.multistream([
-    pino.destination({ dest: LOG_PATH, append: true, sync: false }),
+    pino.destination({ dest: LOG_PATH, append: true, sync: true }),
     pino.destination(1),
   ])
 );
