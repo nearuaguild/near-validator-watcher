@@ -26,6 +26,7 @@ export async function sendTelegramNotification(text: string): Promise<void> {
     {
       response_data: await response.json(),
     },
-    `Couldn't send a Telegram notification - the server returned HTTP ${response.status} code`
+    `Server returned HTTP ${response.status} code`
   );
+  throw new Error(`Couldn't send a Telegram notification`);
 }
