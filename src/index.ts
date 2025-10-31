@@ -14,11 +14,16 @@ import { average, median } from "./utils";
 
 try {
   const blockHeight = await getLatestBlockHeight();
+  logger.debug(
+    { block_height: blockHeight },
+    `Queried the latest block height`
+  );
 
   const [account, stakers] = await Promise.all([
     getAccountAtBlock(blockHeight),
     getStakersAtBlock(blockHeight),
   ]);
+  logger.debug(`Queried the data about account and stakers`);
 
   const totalStake = formatNearAmount(account.locked.toString(), 3);
   const averageStake = formatNearAmount(
@@ -43,6 +48,7 @@ _The data was queried at block height \`${blockHeight}\`_`
       .trim()
       .replaceAll(".", "\\.")
   );
+  logger.debug(`Successfully sent a Telegram notification`);
 } catch (error: unknown) {
   logger.error({ error }, `Caught an error`);
   process.exit(1);

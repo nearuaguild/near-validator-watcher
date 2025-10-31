@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { logger } from "./logger";
 
 const EnvironmentSchema = z.object({
   TELEGRAM_BOT_TOKEN: z.string().min(10),
@@ -7,6 +8,7 @@ const EnvironmentSchema = z.object({
   VALIDATOR_ACCOUNT_ID: z.string(),
 });
 
+logger.debug(`Validating environment variables`);
 const parsed = await EnvironmentSchema.safeParseAsync(process.env);
 
 if (!parsed.success) {
