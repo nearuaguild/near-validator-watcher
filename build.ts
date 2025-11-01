@@ -3,8 +3,16 @@ import { resolve } from "path";
 
 const outfilePath = resolve(__dirname, "watcher");
 
-await Bun.file(outfilePath).delete();
-console.log("Removed previous binary, if existed");
+try {
+  await Bun.file(outfilePath).delete();
+  console.log("Removed previous binary, if existed");
+} catch (error) {
+  if ((error as any).code === "ENOENT") {
+    console.log("No previous binary existed, moving on");
+  } else {
+    console.error("Failed to remove previous binary:", error);
+  }
+}
 
 await build({
   entrypoints: ["src/index.ts"],
